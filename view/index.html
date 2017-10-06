@@ -1,0 +1,108 @@
+<div class="wrap">
+	<h2>{{ title }}</h2>
+	<p>{{ description }}</p>
+</div>
+<br>
+<div class="wrap">
+	<form method="post" action="">
+		<input type="hidden" name="action" value="save">
+		<h2>{{ title }}</h2>
+
+		{% if confirm == true %}
+			<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
+				<p><strong>{{ save }}</strong></p>
+				<button type="button" class="notice-dismiss">
+					<span class="screen-reader-text">{{ dismiss }}</span>
+				</button>
+			</div>
+		{% endif %}
+
+		{% if confirm_container == true %}
+			<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
+				<p><strong>{{ save_container }}</strong></p>
+				<button type="button" class="notice-dismiss">
+					<span class="screen-reader-text">{{ dismiss }}</span>
+				</button>
+			</div>
+		{% endif %}
+
+		<p><a href="http://go.microsoft.com/fwlink/?LinkID=129453" target="_blank">{{ register }}</a></p>
+
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th scope="row">{{ azure_storage_account_name }}</th>
+					<td><input type="text" name="azure_storage_account_name" class="regular-text" title="{{ azure_storage_account_name_title }}" value="{{ azure_storage_account_name_value }}"></td>
+				</tr>
+				<tr>
+					<th scope="row">{{ azure_storage_account_primary_access_key }}</th>
+					<td><input type="text" name="azure_storage_account_primary_access_key" class="large-text" title="{{ azure_storage_account_primary_access_key_title }}" value="{{ azure_storage_account_primary_access_key_value }}"></td>
+				</tr>
+				<tr>
+					<th scope="row">{{ default_azure_storage_account_container_name }}</th>
+					<td>
+						<select name="default_azure_storage_account_container_name" title="{{ default_azure_storage_account_container_name_title }}" class="azure-container-selector">
+							{% for container in containers %}
+								<option value="{{ container }}" {{ (default_azure_storage_account_container_name_value == container) ? 'selected="selected"':'' }}>{{ container }}</option>
+							{% endfor %}	
+						</select>
+						<strong><a href="#newcontainer">{{ create_link }}</a></strong>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">{{ cname }}</th>
+					<td>
+						<input type="url" name="cname" class="regular-text" title="{{ cname_title }}" value="{{ cname_value }}">
+
+						<p class="field-description">
+							{{ cname_description }} <samp>http://mydomain.com/</samp> {{ cname_description2 }} <samp>http://your-account-name.blob.core.windows.net/</samp>.
+						</p>
+						<p>
+							{{ cname_description3 }} <samp>http(s)://</samp> {{ cname_description4 }} <abbr title="{{ cname_description5 }}">DNS</abbr> {{ cname_description6 }}	
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">{{ azure_storage_use_for_default_upload }}</th>
+					<td>
+						<input type="checkbox" name="azure_storage_use_for_default_upload" title="{{ azure_storage_use_for_default_upload }}" value="1" id="azure_storage_use_for_default_upload" {{ (azure_storage_use_for_default_upload_value == 1) ? 'checked="checked"':'' }}>
+	
+						<label for="azure_storage_use_for_default_upload">
+							{{ azure_storage_use_for_default_upload_title }}
+						</label>
+						<br>
+						<small>{{ azure_storage_use_for_default_upload_small }}</small>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">{{ azure_storage_keep_local_file }}</th>
+					<td>
+						<input type="checkbox" name="azure_storage_keep_local_file" title="{{ azure_storage_keep_local_file_title }}" value="1" id="azure_storage_keep_local_file" {{ (azure_storage_keep_local_file_value == 1) ? 'checked="checked"':'' }}>
+						<label for="azure_storage_keep_local_file">{{ azure_storage_keep_local_file_label }}</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p class="submit">
+			<input type="submit" id="azure-submit-button" class="button submit button-primary" value="{{ submit }}">
+		</p>
+	</form>
+	<hr>
+	<a name="newcontainer"></a>
+	<form method="post" action="">
+		<input type="hidden" name="action" value="new">
+		<h2>{{ create_newcontainer }}</h2>
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th>{{ newcontainer }}</th>
+					<td><input type="text" name="newcontainer" class="regular-text" title="" value="" required="required"></td>
+				</tr>
+			</tbody>
+		</table>
+		<p class="submit">
+			<input type="submit" id="azure-submit-button" class="button submit button-primary" value="{{ create_newcontainer }}">
+		</p>
+	</form>
+</div>

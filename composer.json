@@ -1,0 +1,6 @@
+{
+    "require": {        
+        "microsoft/azure-storage": "*",
+        "twig/twig": "^2.0"
+    }  
+}
