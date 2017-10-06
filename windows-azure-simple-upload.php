@@ -10,11 +10,26 @@
  * License URI: http://www.opensource.org/licenses/bsd-license.php
  */
 
-define( 'CURRENT_DIR', dirname(__FILE__) );
-define( 'VIEW', CURRENT_DIR . '/view' );
+/*
+	azure  -> recebe os dados do wordpress + correct name
+	wordpress pega os dados no banco configurações do azure
 
-require_once CURRENT_DIR . '/vendor/autoload.php';
-require_once CURRENT_DIR . '/CorrectFileName.php';
+
+	8664 - matheus
+
+*/
+
+define( 'CURRENT_DIR', dirname(__FILE__) . '/' );
+define( 'VIEW', CURRENT_DIR . 'view' );
+
+require_once CURRENT_DIR . 'vendor/autoload.php';
+require_once CURRENT_DIR . 'Azure.php';
+require_once CURRENT_DIR . 'WPAzureOptions.php';
+require_once CURRENT_DIR . 'CorrectFileName.php';
+require_once CURRENT_DIR . 'AzureFactory.php';
+
+
+
 require_once CURRENT_DIR . '/strings.php';
 require_once CURRENT_DIR . '/PostData.php';
 require_once CURRENT_DIR . '/AzureUpload.php';
@@ -121,11 +136,11 @@ function azure_get_attachment_url($url, $post_id) {
 	}
 	return $url;
 }
-add_filter('wp_get_attachment_url', 'azure_get_attachment_url', 9, 2 );
+//add_filter('wp_get_attachment_url', 'azure_get_attachment_url', 9, 2 );
 
 // Filter the 'srcset' attribute in 'the_content' introduced in WP 4.4.
 if ( function_exists( 'wp_calculate_image_srcset' ) ) {
-	add_filter( 'wp_calculate_image_srcset', 'windows_azure_wp_calculate_image_srcset', 9, 5 );
+	//add_filter( 'wp_calculate_image_srcset', 'windows_azure_wp_calculate_image_srcset', 9, 5 );
 }
 
 function windows_azure_wp_calculate_image_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id )
@@ -149,7 +164,7 @@ function correctMetaData() {
 	global $wpdb;
 	HelperWPAzure::correctMetaDataFields($wpdb);
 }
-add_action( 'admin_init', 'correctMetaData', 1 );
+//add_action( 'admin_init', 'correctMetaData', 1 );
 
 
 
@@ -157,6 +172,15 @@ function windows_azure_storage_wp_update_attachment_metadata( $data, $post_id ) 
 	echo 'vim para o update post meta';
 	var_dump($post_id);
 	var_dump($data);
+	exit;
+	echo 'aaaaaaaa';
+
+	global $wpdb;
+	$azure = AzureFactory::build();
+
+
+
+	return $data;
 }
 
 add_filter(
