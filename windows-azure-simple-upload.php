@@ -23,8 +23,8 @@ require_once CURRENT_DIR . 'File.php';
 require_once CURRENT_DIR . 'FileFactory.php';
 require_once CURRENT_DIR . 'Thumbs.php';
 require_once CURRENT_DIR . 'ThumbsFactory.php';
-require_once CURRENT_DIR . '/strings.php';
-require_once CURRENT_DIR . '/PostData.php';
+require_once CURRENT_DIR . 'strings.php';
+require_once CURRENT_DIR . 'PostData.php';
 
 
 $loader = new Twig_Loader_Filesystem(VIEW);
@@ -51,7 +51,7 @@ function windows_azure_simple_upload_plugin_menu() {
 //display page settings
 function windows_azure_simple_upload_plugin_options_page()
 {
-/*	global $twig;
+	global $twig;
 	global $strings;
 	$strings['confirm'] = false;
 	$strings['confirm_container'] = false;
@@ -67,7 +67,7 @@ function windows_azure_simple_upload_plugin_options_page()
 	$data = $post->getData();
 	$strings = array_merge($strings, $data);
 
-	$azure = new AzureUpload;
+	$azure = AzureFactory::build();
 	//create new container action
 	if ( $post->isValid() && $_POST['action'] == 'new' ) {
 		
@@ -85,7 +85,7 @@ function windows_azure_simple_upload_plugin_options_page()
 	}
 
 	echo $twig->render('index.html', $strings);
-*/
+
 }
 
 
@@ -128,6 +128,19 @@ function windows_azure_storage_wp_update_attachment_metadata( $data, $post_id ) 
 
 	global $wpdb;
 
+	/* 
+	 * Patterns utilized:
+	 *
+	 * Chain of Responsibility
+	 * https://sourcemaking.com/design_patterns/chain_of_responsibility
+	 * https://sourcemaking.com/design_patterns/chain_of_responsibility/php
+	 * https://imasters.com.br/artigo/17645/php/design-patterns-e-o-desenvolvimento-em-php-chain-of-responsibility/
+	 * https://www.sitepoint.com/introduction-to-chain-of-responsibility/
+	 *
+	 * Factory Method Design Pattern
+	 * https://sourcemaking.com/design_patterns/factory_method
+	 */
+
 	//update and upload unique file (original file)
 	$file = FileFactory::build( $wpdb, $post_id, $data );
 	$data = $file->upload();
@@ -145,7 +158,3 @@ add_filter(
 	9,
 	2
 );
-
-
-//retirar os itens desnecessários do cadastro
-//verifica se existe meta data - se existir atualiza a metadata tambem 

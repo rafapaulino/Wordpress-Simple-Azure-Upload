@@ -10,9 +10,7 @@ class PostData
 			'azure_storage_account_name',
 			'azure_storage_account_primary_access_key',
 			'default_azure_storage_account_container_name',
-			'cname',
-			'azure_storage_use_for_default_upload',
-			'azure_storage_keep_local_file'
+			'cname'
 		);
 	}
 
