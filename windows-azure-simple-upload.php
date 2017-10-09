@@ -38,6 +38,9 @@ add_action( 'admin_menu', 'windows_azure_simple_upload_plugin_menu' );
 function windows_azure_simple_upload_plugin_menu() {
 	if ( current_user_can( 'manage_options' ) ) {
 		global $strings;
+
+		//azure_load_plugin_textdomain();
+
 		add_options_page(
 			$strings['page_title'],
 			$strings['menu_title'],
@@ -51,6 +54,7 @@ function windows_azure_simple_upload_plugin_menu() {
 //display page settings
 function windows_azure_simple_upload_plugin_options_page()
 {
+	
 	global $twig;
 	global $strings;
 	$strings['confirm'] = false;
@@ -158,3 +162,13 @@ add_filter(
 	9,
 	2
 );
+
+
+function azure_load_plugin_textdomain() {
+    
+    load_plugin_textdomain( 'windows-azure-simple-upload', FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
+
+    //echo __('Windows Azure Simple Upload Plugin Settings', 'windows-azure-simple-upload');
+}
+//add_action( 'plugins_loaded', 'azure_load_plugin_textdomain', 0 );
+

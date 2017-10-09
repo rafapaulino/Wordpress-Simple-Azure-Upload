@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: strings.php conversion\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-09 19:45+0000\n"
+"PO-Revision-Date: 2017-10-09 19:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: Unknown\n"
+"Language: zxx\n"
+"Plural-Forms: nplurals=2; plural=n!=1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: pt_BR\n"
+"X-Loco-Parser: loco_parse_php\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: stdin:3 stdin:5
+msgid "Windows Azure Simple Upload Plugin Settings"
+msgstr ""
+
+#: stdin:4
+msgid "Windows Azure Simple Upload"
+msgstr ""
+
+#: stdin:6
+msgid ""
+"This WordPress plugin allows you to use Windows Azure Storage Service to "
+"host your media for your WordPress powered blog. Windows Azure provides "
+"storage in the cloud with authenticated access and triple replication to "
+"help keep your data safe. Applications work with data using REST conventions "
+"and standard HTTP operations to identify and expose data using URIs. This "
+"plugin allows you to easily upload, retrieve, and link to files stored on "
+"Windows Azure Storage service from within WordPress."
+msgstr ""
+
+#: stdin:7
+msgid ""
+"If you do not have Windows Azure Storage Account, please register for "
+"Windows Azure Services."
+msgstr ""
+
+#: stdin:8
+msgid "Store Account Name"
+msgstr ""
+
+#: stdin:9
+msgid "Windows Azure Storage Account Name"
+msgstr ""
+
+#: stdin:10
+msgid "Store Account Key"
+msgstr ""
+
+#: stdin:11
+msgid "Windows Azure Storage Account Primary Access Key"
+msgstr ""
+
+#: stdin:12
+msgid "Default Storage Container"
+msgstr ""
+
+#: stdin:13
+msgid "Default container to be used for storing media files"
+msgstr ""
+
+#: stdin:14
+msgid "CNAME"
+msgstr ""
+
+#: stdin:15
+msgid "Use CNAME instead of Windows Azure Blob URL"
+msgstr ""
+
+#: stdin:16
+msgid ""
+"Note: Use this option if you would like to display image URLs belonging to "
+"your domain like"
+msgstr ""
+
+#: stdin:17
+msgid "instead of"
+msgstr ""
+
+#: stdin:18
+msgid "This CNAME must start with"
+msgstr ""
+
+#: stdin:19
+msgid "and the administrator will have to update"
+msgstr ""
+
+#: stdin:20
+msgid "Domain Name System"
+msgstr ""
+
+#: stdin:21
+msgid "entries accordingly"
+msgstr ""
+
+#: stdin:22
+msgid "Save Changes"
+msgstr ""
+
+#: stdin:23
+msgid "Saved settings."
+msgstr ""
+
+#: stdin:24
+msgid "Dismiss this warning."
+msgstr ""
+
+#: stdin:25
+msgid "New container name:"
+msgstr ""
+
+#: stdin:26
+msgid "Create New Container"
+msgstr ""
+
+#: stdin:27
+msgid "Or create a new container by clicking here."
+msgstr ""
+
+#: stdin:28
+msgid "New container created!"
+msgstr ""

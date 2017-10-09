@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: strings.php conversion\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-09 19:45+0000\n"
+"PO-Revision-Date: 2017-10-09 17:02-0300\n"
+"Last-Translator: \n"
+"Language-Team: Unknown\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: pt_BR\n"
+"X-Loco-Parser: loco_parse_php\n"
+"X-Generator: Poedit 2.0.4\n"
+
+#: stdin:3 stdin:5
+msgid "Windows Azure Simple Upload Plugin Settings"
+msgstr "O Windows Azure Upload Simples Configurações Do Plugin"
+
+#: stdin:4
+msgid "Windows Azure Simple Upload"
+msgstr "O Windows Azure Upload Simples"
+
+#: stdin:6
+msgid "This WordPress plugin allows you to use Windows Azure Storage Service to host your media for your WordPress powered blog. Windows Azure provides storage in the cloud with authenticated access and triple replication to help keep your data safe. Applications work with data using REST conventions and standard HTTP operations to identify and expose data using URIs. This plugin allows you to easily upload, retrieve, and link to files stored on Windows Azure Storage service from within WordPress."
+msgstr "Este plugin WordPress permite que você usar o Windows Azure Storage  para hospedar suas mídias do seu blog WordPress  O Windows Azure fornece armazenamento na nuvem com acesso autenticado e replicação tripla para manter seus dados seguros. Aplicações  trabalham com dados usando REST e HTTP padrão de operações para identificar e expor dados através de URIs. Este plugin permite que você faça  facilmente os uploads, recupere os links para os arquivos armazenados em no Windows Azure, de dentro do WordPress."
+
+#: stdin:7
+msgid "If you do not have Windows Azure Storage Account, please register for Windows Azure Services."
+msgstr "Se você não tem o Windows Azure Storage Conta, por favor se inscreva para Serviços do Windows Azure."
+
+#: stdin:8
+msgid "Store Account Name"
+msgstr "Nome da Conta"
+
+#: stdin:9
+msgid "Windows Azure Storage Account Name"
+msgstr "Windows Azure Storage Nome da Conta"
+
+#: stdin:10
+msgid "Store Account Key"
+msgstr "Chave Armazenamento"
+
+#: stdin:11
+msgid "Windows Azure Storage Account Primary Access Key"
+msgstr "Chave De Acesso da Conta do Windows Azure Storage"
+
+#: stdin:12
+msgid "Default Storage Container"
+msgstr "Recipiente Padrão"
+
+#: stdin:13
+msgid "Default container to be used for storing media files"
+msgstr "Recipiente padrão a ser usado para armazenar arquivos de mídia"
+
+#: stdin:14
+msgid "CNAME"
+msgstr "CNAME"
+
+#: stdin:15
+msgid "Use CNAME instead of Windows Azure Blob URL"
+msgstr "Use o CNAME em vez da URL do Blob"
+
+#: stdin:16
+msgid "Note: Use this option if you would like to display image URLs belonging to your domain like"
+msgstr "Nota: Use esta opção se você gostaria de exibir imagem URLs pertencentes a do seu domínio como"
+
+#: stdin:17
+msgid "instead of"
+msgstr "em vez de"
+
+#: stdin:18
+msgid "This CNAME must start with"
+msgstr "Este CNAME tem de iniciar com o"
+
+#: stdin:19
+msgid "and the administrator will have to update"
+msgstr "e o administrador terá que atualizar"
+
+#: stdin:20
+msgid "Domain Name System"
+msgstr "Sistema De Nome De Domínio"
+
+#: stdin:21
+msgid "entries accordingly"
+msgstr "entradas de acordo"
+
+#: stdin:22
+msgid "Save Changes"
+msgstr "Salve As Alterações"
+
+#: stdin:23
+msgid "Saved settings."
+msgstr "Configurações salvas."
+
+#: stdin:24
+msgid "Dismiss this warning."
+msgstr "Fechar este aviso."
+
+#: stdin:25
+msgid "New container name:"
+msgstr "Novo nome do recipiente:"
+
+#: stdin:26
+msgid "Create New Container"
+msgstr "Criar Novo Recipiente"
+
+#: stdin:27
+msgid "Or create a new container by clicking here."
+msgstr "Ou criar um novo recipiente clicando aqui."
+
+#: stdin:28
+msgid "New container created!"
+msgstr "Novo recipiente criado!"
