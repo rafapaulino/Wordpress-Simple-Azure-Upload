@@ -9,16 +9,6 @@
  * License: BSD 2-Clause
  * License URI: http://www.opensource.org/licenses/bsd-license.php
  */
-
-/*
-	azure  -> recebe os dados do wordpress + correct name
-	wordpress pega os dados no banco configurações do azure
-
-
-	8664 - matheus
-
-*/
-
 define( 'CURRENT_DIR', dirname(__FILE__) . '/' );
 define( 'VIEW', CURRENT_DIR . 'view' );
 
@@ -27,14 +17,15 @@ require_once CURRENT_DIR . 'Azure.php';
 require_once CURRENT_DIR . 'WPAzureOptions.php';
 require_once CURRENT_DIR . 'CorrectFileName.php';
 require_once CURRENT_DIR . 'AzureFactory.php';
-
-
-
+require_once CURRENT_DIR . 'WPUpload.php';
+require_once CURRENT_DIR . 'WPFile.php';
+require_once CURRENT_DIR . 'File.php';
+require_once CURRENT_DIR . 'FileFactory.php';
+require_once CURRENT_DIR . 'Thumbs.php';
+require_once CURRENT_DIR . 'ThumbsFactory.php';
 require_once CURRENT_DIR . '/strings.php';
 require_once CURRENT_DIR . '/PostData.php';
-require_once CURRENT_DIR . '/AzureUpload.php';
-require_once CURRENT_DIR . '/WPAzurePostMeta.php';
-require_once CURRENT_DIR . '/HelperWPAzure.php';
+
 
 $loader = new Twig_Loader_Filesystem(VIEW);
 $twig = new Twig_Environment($loader, array(
@@ -60,7 +51,7 @@ function windows_azure_simple_upload_plugin_menu() {
 //display page settings
 function windows_azure_simple_upload_plugin_options_page()
 {
-	global $twig;
+/*	global $twig;
 	global $strings;
 	$strings['confirm'] = false;
 	$strings['confirm_container'] = false;
@@ -94,53 +85,24 @@ function windows_azure_simple_upload_plugin_options_page()
 	}
 
 	echo $twig->render('index.html', $strings);
+*/
 }
-
-//upload for azure
-function sendFileForAzure($metadata, $attachment_id) {
-    
-	global $wpdb;
-
-	//update post meta normaly
-    $wpAzure = new WPAzurePostMeta($metadata, $attachment_id, $wpdb);
-
-    //call azure upload
-    $azure = new AzureUpload;
-
-    //call helper
-    $helper = new HelperWPAzure( $wpAzure, $azure );
-
-    //send primary file
-    $response = $helper->sendPrimaryFile();
-
-    if($response['status'] == 'success') {
-    	//update file guid
-		$wpAzure->updateFileGUID( $response['fileUrl'], $response['name'] );
-
-		//update metadata files
-		$helper->sendMetaDataFiles();
-    }
-    //remover o arquivo local
-}
-//add_filter( 'wp_generate_attachment_metadata', 'sendFileForAzure', 10, 2 );
 
 
 //show media url correct
 function azure_get_attachment_url($url, $post_id) {
 	
-	if ( (bool) get_option( 'azure_storage_use_for_default_upload' ) ) {
-		$post = get_post( intval($post_id) );
-		if (isset($post)) {
-			$url = $post->guid;
-		}
+	$post = get_post( intval($post_id) );
+	if (isset($post)) {
+		$url = $post->guid;
 	}
 	return $url;
 }
-//add_filter('wp_get_attachment_url', 'azure_get_attachment_url', 9, 2 );
+add_filter('wp_get_attachment_url', 'azure_get_attachment_url', 9, 2 );
 
 // Filter the 'srcset' attribute in 'the_content' introduced in WP 4.4.
 if ( function_exists( 'wp_calculate_image_srcset' ) ) {
-	//add_filter( 'wp_calculate_image_srcset', 'windows_azure_wp_calculate_image_srcset', 9, 5 );
+	add_filter( 'wp_calculate_image_srcset', 'windows_azure_wp_calculate_image_srcset', 9, 5 );
 }
 
 function windows_azure_wp_calculate_image_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id )
@@ -160,25 +122,19 @@ function windows_azure_wp_calculate_image_srcset( $sources, $size_array, $image_
 	return $newSources;
 }
 
-function correctMetaData() {
-	global $wpdb;
-	HelperWPAzure::correctMetaDataFields($wpdb);
-}
-//add_action( 'admin_init', 'correctMetaData', 1 );
-
 
 
 function windows_azure_storage_wp_update_attachment_metadata( $data, $post_id ) {
-	echo 'vim para o update post meta';
-	var_dump($post_id);
-	var_dump($data);
-	exit;
-	echo 'aaaaaaaa';
 
 	global $wpdb;
-	$azure = AzureFactory::build();
 
+	//update and upload unique file (original file)
+	$file = FileFactory::build( $wpdb, $post_id, $data );
+	$data = $file->upload();
 
+	//update and upload thumbs (only images are called here)
+	$thumbs = ThumbsFactory::build( $wpdb, $post_id, $data );
+	$data = $thumbs->upload();
 
 	return $data;
 }
@@ -189,3 +145,7 @@ add_filter(
 	9,
 	2
 );
+
+
+//retirar os itens desnecessários do cadastro
+//verifica se existe meta data - se existir atualiza a metadata tambem 
