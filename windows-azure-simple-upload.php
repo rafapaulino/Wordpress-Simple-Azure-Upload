@@ -8,6 +8,15 @@
  * Author URI: http://rafaacademy.com/
  * License: BSD 2-Clause
  * License URI: http://www.opensource.org/licenses/bsd-license.php
+
+
+ https://www.sitepoint.com/publishing-a-plugin-to-the-wordpress-plugin-directory/
+ https://wordpress.org/plugins/developers/
+ https://profiles.wordpress.org/rafacorre/
+ https://wordpress.org/plugins/developers/add/
+ http://www.wpbeginner.com/plugins/how-to-add-your-plugin-to-the-wordpress-plugin-directory/
+ https://wordpress.org/plugins/
+
  */
 define( 'CURRENT_DIR', dirname(__FILE__) . '/' );
 define( 'VIEW', CURRENT_DIR . 'view' );
@@ -44,13 +53,13 @@ function windows_azure_simple_upload_plugin_menu() {
 			__( 'Windows Azure Simple Upload', 'windows-azure-simple-upload' ),
 			'manage_options',
 			'windows-azure-simple-upload-plugin-options',
-			'windows_azure_simple_upload_plugin_options_page'
+			'azure_simple_upload_plugin_options_page'
 		);
 	}
 }
 
 //display page settings and save options
-function windows_azure_simple_upload_plugin_options_page()
+function azure_simple_upload_plugin_options_page()
 {
 	
 	global $twig;
@@ -105,17 +114,17 @@ add_filter('wp_get_attachment_url', 'azure_get_attachment_url', 9, 2 );
 
 // Filter the 'srcset' attribute in 'the_content' introduced in WP 4.4.
 if ( function_exists( 'wp_calculate_image_srcset' ) ) {
-	add_filter( 'wp_calculate_image_srcset', 'windows_azure_wp_calculate_image_srcset', 9, 5 );
+	add_filter( 'wp_calculate_image_srcset', 'azure_wp_calculate_image_srcset', 9, 5 );
 }
 
-function windows_azure_wp_calculate_image_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id )
+function azure_wp_calculate_image_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id )
 {
-	return Tools::getNewSources( $attachment_id );
+	return Tools::getNewSources( $attachment_id, $sources );
 }
 
 
 
-function windows_azure_storage_wp_update_attachment_metadata( $data, $post_id ) {
+function azure_simple_upload_wp_update_attachment_metadata( $data, $post_id ) {
 
 	global $wpdb;
 
@@ -145,7 +154,7 @@ function windows_azure_storage_wp_update_attachment_metadata( $data, $post_id ) 
 
 add_filter(
 	'wp_update_attachment_metadata',
-	'windows_azure_storage_wp_update_attachment_metadata',
+	'azure_simple_upload_wp_update_attachment_metadata',
 	9,
 	2
 );

@@ -35,7 +35,7 @@ class Thumbs extends WPUpload
 	{
 		//if file exists, send upload and update metadata
 		if ( file_exists( $file['path'] ) ) {
-			
+		
 			$response = $this->_azure->upload( 
 				$file['path'], 
 				$this->_file->getSubDir(),
