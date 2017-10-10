@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: strings.php conversion\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-09 19:45+0000\n"
-"PO-Revision-Date: 2017-10-09 17:02-0300\n"
+"PO-Revision-Date: 2017-10-10 10:16-0300\n"
 "Last-Translator: \n"
 "Language-Team: Unknown\n"
 "Language: pt_BR\n"
@@ -17,11 +17,11 @@ msgstr ""
 
 #: stdin:3 stdin:5
 msgid "Windows Azure Simple Upload Plugin Settings"
-msgstr "O Windows Azure Upload Simples Configurações Do Plugin"
+msgstr "Windows Azure Upload Simples Configurações Do Plugin"
 
 #: stdin:4
 msgid "Windows Azure Simple Upload"
-msgstr "O Windows Azure Upload Simples"
+msgstr "Windows Azure Upload Simples"
 
 #: stdin:6
 msgid "This WordPress plugin allows you to use Windows Azure Storage Service to host your media for your WordPress powered blog. Windows Azure provides storage in the cloud with authenticated access and triple replication to help keep your data safe. Applications work with data using REST conventions and standard HTTP operations to identify and expose data using URIs. This plugin allows you to easily upload, retrieve, and link to files stored on Windows Azure Storage service from within WordPress."
