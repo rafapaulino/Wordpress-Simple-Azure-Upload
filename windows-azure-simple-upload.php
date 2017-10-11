@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Windows Azure Simple Upload
- * Plugin URI: https://wordpress.org/plugins/windows-azure-storage/
+ * Plugin URI: 
  * Description: Use the Windows Azure to host your website's media files.
  * Version: 1.0.0
  * Author: Rafael Paulino
