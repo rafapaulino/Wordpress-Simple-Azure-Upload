@@ -8,15 +8,6 @@
  * Author URI: http://rafaacademy.com/
  * License: BSD 2-Clause
  * License URI: http://www.opensource.org/licenses/bsd-license.php
-
-
- https://www.sitepoint.com/publishing-a-plugin-to-the-wordpress-plugin-directory/
- https://wordpress.org/plugins/developers/
- https://profiles.wordpress.org/rafacorre/
- https://wordpress.org/plugins/developers/add/
- http://www.wpbeginner.com/plugins/how-to-add-your-plugin-to-the-wordpress-plugin-directory/
- https://wordpress.org/plugins/
-
  */
 define( 'CURRENT_DIR', dirname(__FILE__) . '/' );
 define( 'VIEW', CURRENT_DIR . 'view' );
