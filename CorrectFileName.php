@@ -103,7 +103,7 @@ class CorrectFileName
 		$oldstr = $str;
 		$ext = explode(".",$str);
 
-		if (count($ext) > 0) {
+		if (count($ext) > 1) {
 			$str = $this->replace($ext[0]);
 			$ext = strtolower($ext[count($ext)-1]);
 			

@@ -72,7 +72,7 @@ function azure_simple_upload_plugin_options_page()
 	$azure = AzureFactory::build();
 	//create new container action
 	if ( $post->isValid() && $_POST['action'] == 'new' ) {
-		
+
 		$azure->createContainer(trim($_POST['newcontainer']));
 		$strings['confirm_container'] = true;
 	}
