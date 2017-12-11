@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Windows Azure Simple Upload
+ * Plugin Name: Rafa Azure Simple Upload
  * Plugin URI: 
  * Description: Use the Windows Azure to host your website's media files.
- * Version: 1.0.0
+ * Version: 1.1.1
  * Author: Rafael Paulino
  * Author URI: http://rafaacademy.com/
  * License: BSD 2-Clause
@@ -11,6 +11,10 @@
  */
 define( 'CURRENT_DIR', dirname(__FILE__) . '/' );
 define( 'VIEW', CURRENT_DIR . 'view' );
+
+if ( ! function_exists( 'wp_handle_upload' ) ) {
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+}
 
 require_once CURRENT_DIR . 'vendor/autoload.php';
 require_once CURRENT_DIR . 'Azure.php';
@@ -33,17 +37,17 @@ $twig = new Twig_Environment($loader, array(
     'cache' => false,
 ));
 
-//create item in menu (Settings -> Windows Azure)
-add_action( 'admin_menu', 'windows_azure_simple_upload_plugin_menu' );
+//create item in menu (Settings -> Rafa Azure)
+add_action( 'admin_menu', 'azure_simple_upload_plugin_menu' );
 
-function windows_azure_simple_upload_plugin_menu() {
+function azure_simple_upload_plugin_menu() {
 	if ( current_user_can( 'manage_options' ) ) {
 
 		add_options_page(
-			__( 'Windows Azure Simple Upload Plugin Settings', 'windows-azure-simple-upload' ),
-			__( 'Windows Azure Simple Upload', 'windows-azure-simple-upload' ),
+			__( 'Rafa Azure Simple Upload Plugin Settings', 'rafa-azure-simple-upload' ),
+			__( 'Rafa Azure Simple Upload', 'rafa-azure-simple-upload' ),
 			'manage_options',
-			'windows-azure-simple-upload-plugin-options',
+			'rafa-azure-simple-upload-plugin-options',
 			'azure_simple_upload_plugin_options_page'
 		);
 	}
@@ -52,7 +56,6 @@ function windows_azure_simple_upload_plugin_menu() {
 //display page settings and save options
 function azure_simple_upload_plugin_options_page()
 {
-	
 	global $twig;
 	
 	$strings['confirm'] = false;
@@ -114,7 +117,7 @@ function azure_wp_calculate_image_srcset( $sources, $size_array, $image_src, $im
 }
 
 
-
+//upload files
 function azure_simple_upload_wp_update_attachment_metadata( $data, $post_id ) {
 
 	global $wpdb;
@@ -150,9 +153,29 @@ add_filter(
 	2
 );
 
+
+//get correct url in wp.media 
+add_filter( 'wp_handle_upload', 'azure_storage_wp_handle_upload' );
+
+function azure_storage_wp_handle_upload( $uploads ) {
+	
+	$options = new WPAzureOptions;
+	$baseUrl = $options->getCname() . '/' . $options->getContainer() . '/';
+
+	$wp_upload_dir  = wp_upload_dir();
+	$uploads['url'] = sprintf( '%1$s/%2$s/%3$s',
+		untrailingslashit( $baseUrl ),
+		ltrim( $wp_upload_dir['subdir'], '/' ),
+		basename( $uploads['file'] )
+	);
+
+	return $uploads;
+}
+
 //get translate
+//create po files: https://localise.biz/free/poeditor
 function azure_load_plugin_textdomain() {
     
-    load_plugin_textdomain( 'windows-azure-simple-upload', FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
+    load_plugin_textdomain( 'rafa-azure-simple-upload', FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
 }
 add_action( 'plugins_loaded', 'azure_load_plugin_textdomain', 0 );
