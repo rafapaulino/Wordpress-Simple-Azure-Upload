@@ -108,7 +108,7 @@ class CorrectFileName
 			$ext = strtolower($ext[count($ext)-1]);
 			
 			//return extension with name
-			$str = date("YmdHis").'-'.trim($str).'.'.$ext;
+			$str = 'file-'.date("YmdHis").'-'.trim($str).'.'.$ext;
 		} else {
 			$str = $this->replace($str);
 		}    	
