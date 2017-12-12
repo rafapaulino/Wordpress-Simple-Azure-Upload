@@ -63,7 +63,7 @@ class Azure
 			
 			$fileName = $this->_CorrectNameObject->getName($name);
 			$name = $subdir.$fileName;
-		    
+    
 		    //Upload blob
 		    $blb = $this->_blobRestProxy->createBlockBlob($this->_WPObject->getContainer(), $name, $content);
 
