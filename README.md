@@ -1,4 +1,4 @@
-# Windows Azure Storage for WordPress
+# Rafa Azure Storage for WordPress
 
 Use the Windows Azure Storage service to host your website's media files.
 
