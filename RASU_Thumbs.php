@@ -1,6 +1,6 @@
 <?php
 
-class Thumbs extends WPUpload 
+class RASU_Thumbs extends RASU_WPUpload 
 {
 	private $_azure;
 	private $_file;

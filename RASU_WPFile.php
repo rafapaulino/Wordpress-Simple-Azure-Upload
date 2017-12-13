@@ -1,6 +1,6 @@
 <?php
 
-class WPFile
+class RASU_WPFile
 {
 	private $_attachmentId;
 	private $_metadata;

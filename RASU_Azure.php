@@ -5,7 +5,7 @@ use MicrosoftAzure\Storage\Blob\Models\ListContainersOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-class Azure
+class RASU_Azure
 {
 	private $_WPObject;
 	private $_CorrectNameObject;
@@ -17,27 +17,37 @@ class Azure
 		$this->_WPObject = $wp;
 		$this->_CorrectNameObject = $name;
 
-		$this->_connectionString = "DefaultEndpointsProtocol=http;AccountName=".$this->_WPObject->getAccount().";AccountKey=".$this->_WPObject->getKey();
+		if (trim($this->_WPObject->getAccount()) !== "") {
+			$this->_connectionString = "DefaultEndpointsProtocol=http;AccountName=".$this->_WPObject->getAccount().";AccountKey=".$this->_WPObject->getKey();
 
-		$this->_blobRestProxy = ServicesBuilder::getInstance()->createBlobService($this->_connectionString);
+			$this->_blobRestProxy = ServicesBuilder::getInstance()->createBlobService($this->_connectionString);
+		} else {
+			$this->_connectionString = "";
+			$this->_blobRestProxy = null;
+		}
 	}
 
 	public function listContainers()
 	{
 	    $containers = array();
-	    try {
 
-	        $listContainersOptions = new ListContainersOptions;
-	        $listContainersResult = $this->_blobRestProxy->listContainers($listContainersOptions);
+	    if (trim($this->_WPObject->getAccount()) !== "") {
+		    
+		    try {
 
-	        foreach ($listContainersResult->getContainers() as $container)
-    		{
-    			$containers[] = $container->getName();
-    		}
+		        $listContainersOptions = new ListContainersOptions;
+		        $listContainersResult = $this->_blobRestProxy->listContainers($listContainersOptions);
 
-	    } catch (ServiceException $e) {
-	        return $e;
-	    }
+		        foreach ($listContainersResult->getContainers() as $container)
+	    		{
+	    			$containers[] = $container->getName();
+	    		}
+
+		    } catch (ServiceException $e) {
+		        return $e;
+		    }
+		    
+		}
 
 	    return $containers;
 	}
@@ -60,7 +70,7 @@ class Azure
 		$content = fopen($localFileName, "r");
 
 		try {
-			
+		
 			$fileName = $this->_CorrectNameObject->getName($name);
 			$name = $subdir.$fileName;
     

@@ -1,6 +1,6 @@
 <?php
 
-class CorrectFileName
+class RASU_CorrectFileName
 {
 	private $_characters;
 

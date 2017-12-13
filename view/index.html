@@ -1,64 +1,72 @@
 <div class="wrap">
-	<h2>{{ title }}</h2>
-	<p>{{ description }}</p>
+	<h2>{{ rasu_twig_title }}</h2>
+	<p>{{ rasu_twig_description }}</p>
 </div>
 <br>
 <div class="wrap">
 	<form method="post" action="">
-		<input type="hidden" name="action" value="save">
-		<h2>{{ title }}</h2>
+		<input type="hidden" name="rasu_action" value="save">
+		<h2>{{ rasu_twig_title }}</h2>
 
-		{% if confirm == true %}
+		{% if rasu_account_value is empty or rasu_key_value is empty or rasu_container_value is empty or rasu_cname_value is empty %}
+			<div class="notice notice-warning">
+				<p>Adicione todas as informações para poder fazer o upload para o Azure!</a></p>
+			</div>
+		{% endif %}
+
+		{% if rasu_confirm == true %}
 			<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
-				<p><strong>{{ save }}</strong></p>
+				<p><strong>{{ rasu_twig_save }}</strong></p>
 				<button type="button" class="notice-dismiss">
-					<span class="screen-reader-text">{{ dismiss }}</span>
+					<span class="screen-reader-text">{{ rasu_twig_dismiss }}</span>
 				</button>
 			</div>
 		{% endif %}
 
-		{% if confirm_container == true %}
+		{% if rasu_confirm_container == true %}
 			<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
-				<p><strong>{{ save_container }}</strong></p>
+				<p><strong>{{ rasu_twig_save_container }}</strong></p>
 				<button type="button" class="notice-dismiss">
-					<span class="screen-reader-text">{{ dismiss }}</span>
+					<span class="screen-reader-text">{{ rasu_twig_dismiss }}</span>
 				</button>
 			</div>
 		{% endif %}
 
-		<p><a href="https://azure.microsoft.com/" target="_blank">{{ register }}</a></p>
+		<p><a href="https://azure.microsoft.com/" target="_blank">{{ rasu_twig_register }}</a></p>
 
 		<table class="form-table">
 			<tbody>
 				<tr>
-					<th scope="row">{{ azure_storage_account_name }}</th>
-					<td><input type="text" name="azure_storage_account_name" class="regular-text" title="{{ azure_storage_account_name_title }}" value="{{ azure_storage_account_name_value }}"></td>
+					<th scope="row">{{ rasu_twig_account }}</th>
+					<td><input type="text" name="rasu_account" class="regular-text" title="{{ rasu_twig_account_title }}" value="{{ rasu_account_value }}"></td>
 				</tr>
 				<tr>
-					<th scope="row">{{ azure_storage_account_primary_access_key }}</th>
-					<td><input type="text" name="azure_storage_account_primary_access_key" class="large-text" title="{{ azure_storage_account_primary_access_key_title }}" value="{{ azure_storage_account_primary_access_key_value }}"></td>
+					<th scope="row">{{ rasu_twig_key }}</th>
+					<td><input type="text" name="rasu_key" class="large-text" title="{{ rasu_twig_key_title }}" value="{{ rasu_key_value }}"></td>
 				</tr>
+				{% if rasu_account_value is not empty or rasu_key_value is not empty or rasu_container_value is not empty or rasu_cname_value is not empty %}
+					<tr>
+						<th scope="row">{{ rasu_twig_container }}</th>
+						<td>
+							<select name="rasu_container" title="{{ rasu_twig_container_title }}" class="azure-container-selector">
+								{% for container in rasu_containers %}
+									<option value="{{ container }}" {{ (rasu_container_value == container) ? 'selected="selected"':'' }}>{{ container }}</option>
+								{% endfor %}	
+							</select>
+							<strong><a href="#newcontainer">{{ create_link }}</a></strong>
+						</td>
+					</tr>
+				{% endif %}
 				<tr>
-					<th scope="row">{{ default_azure_storage_account_container_name }}</th>
+					<th scope="row">{{ rasu_twig_cname }}</th>
 					<td>
-						<select name="default_azure_storage_account_container_name" title="{{ default_azure_storage_account_container_name_title }}" class="azure-container-selector">
-							{% for container in containers %}
-								<option value="{{ container }}" {{ (default_azure_storage_account_container_name_value == container) ? 'selected="selected"':'' }}>{{ container }}</option>
-							{% endfor %}	
-						</select>
-						<strong><a href="#newcontainer">{{ create_link }}</a></strong>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">{{ cname }}</th>
-					<td>
-						<input type="url" name="cname" class="regular-text" title="{{ cname_title }}" value="{{ cname_value }}">
+						<input type="url" name="rasu_cname" class="regular-text" title="{{ rasu_twig_cname_title }}" value="{{ rasu_cname_value }}">
 
 						<p class="field-description">
-							{{ cname_description }} <samp>http://mydomain.com/</samp> {{ cname_description2 }} <samp>http://your-account-name.blob.core.windows.net/</samp>.
+							{{ rasu_twig_cname_description }} <samp>http://mydomain.com/</samp> {{ rasu_twig_cname_description2 }} <samp>http://your-account-name.blob.core.windows.net/</samp>.
 						</p>
 						<p>
-							{{ cname_description3 }} <samp>http(s)://</samp> {{ cname_description4 }} <abbr title="{{ cname_description5 }}">DNS</abbr> {{ cname_description6 }}	
+							{{ rasu_twig_cname_description3 }} <samp>http(s)://</samp> {{ rasu_twig_cname_description4 }} <abbr title="{{ cname_description5 }}">DNS</abbr> {{ rasu_twig_cname_description6 }}	
 						</p>
 					</td>
 				</tr>
@@ -66,24 +74,27 @@
 		</table>
 
 		<p class="submit">
-			<input type="submit" id="azure-submit-button" class="button submit button-primary" value="{{ submit }}">
+			<input type="submit" id="rasu_button" class="button submit button-primary" value="{{ rasu_twig_submit }}">
 		</p>
 	</form>
-	<hr>
-	<a name="newcontainer"></a>
-	<form method="post" action="">
-		<input type="hidden" name="action" value="new">
-		<h2>{{ create_newcontainer }}</h2>
-		<table class="form-table">
-			<tbody>
-				<tr>
-					<th>{{ newcontainer }}</th>
-					<td><input type="text" name="newcontainer" class="regular-text" title="" value="" required="required"></td>
-				</tr>
-			</tbody>
-		</table>
-		<p class="submit">
-			<input type="submit" id="azure-submit-button" class="button submit button-primary" value="{{ create_newcontainer }}">
-		</p>
-	</form>
+
+	{% if rasu_account_value is not empty or rasu_key_value is not empty or rasu_container_value is not empty or rasu_cname_value is not empty %}
+		<hr>
+		<a name="newcontainer"></a>
+		<form method="post" action="">
+			<input type="hidden" name="rasu_action" value="new">
+			<h2>{{ rasu_twig_create_newcontainer }}</h2>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th>{{ rasu_twig_newcontainer }}</th>
+						<td><input type="text" name="newcontainer" class="regular-text" title="" value="" required="required"></td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="submit">
+				<input type="submit" id="rasu_button2" class="button submit button-primary" value="{{ rasu_twig_create_newcontainer }}">
+			</p>
+		</form>
+	{% endif %}
 </div>

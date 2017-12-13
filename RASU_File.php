@@ -1,6 +1,6 @@
 <?php
 
-class File extends WPUpload 
+class RASU_File extends RASU_WPUpload 
 {
 	private $_azure;
 	private $_file;

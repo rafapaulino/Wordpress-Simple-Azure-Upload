@@ -1,6 +1,6 @@
 <?php
 
-class Tools
+class RASU_Tools
 {
 	static public function changeUrl( $postId, $url )
 	{

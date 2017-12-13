@@ -1,16 +1,16 @@
 <?php
 
-class PostData
+class RASU_PostData
 {
 	private $_fields;
 
 	public function __construct()
 	{
 		$this->_fields = array(
-			'azure_storage_account_name',
-			'azure_storage_account_primary_access_key',
-			'default_azure_storage_account_container_name',
-			'cname'
+			'rasu_account',
+			'rasu_key',
+			'rasu_container',
+			'rasu_cname'
 		);
 	}
 

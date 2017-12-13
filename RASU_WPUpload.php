@@ -1,6 +1,6 @@
 <?php
 
-abstract class WPUpload
+abstract class RASU_WPUpload
 {
 	abstract function upload();
 }

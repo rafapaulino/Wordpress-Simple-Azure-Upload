@@ -9,7 +9,7 @@
  * License: BSD 2-Clause
  * License URI: http://www.opensource.org/licenses/bsd-license.php
  */
-define( 'RASU_RASU_CURRENT_DIR', dirname(__FILE__) . '/' );
+define( 'RASU_CURRENT_DIR', dirname(__FILE__) . '/' );
 define( 'RASU_VIEW', RASU_CURRENT_DIR . 'view' );
 
 if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -17,19 +17,19 @@ if ( ! function_exists( 'wp_handle_upload' ) ) {
 }
 
 require_once RASU_CURRENT_DIR . 'vendor/autoload.php';
-require_once RASU_CURRENT_DIR . 'Azure.php';
-require_once RASU_CURRENT_DIR . 'WPAzureOptions.php';
-require_once RASU_CURRENT_DIR . 'CorrectFileName.php';
-require_once RASU_CURRENT_DIR . 'AzureFactory.php';
-require_once RASU_CURRENT_DIR . 'WPUpload.php';
-require_once RASU_CURRENT_DIR . 'WPFile.php';
-require_once RASU_CURRENT_DIR . 'File.php';
-require_once RASU_CURRENT_DIR . 'FileFactory.php';
-require_once RASU_CURRENT_DIR . 'Thumbs.php';
-require_once RASU_CURRENT_DIR . 'ThumbsFactory.php';
-require_once RASU_CURRENT_DIR . 'PostData.php';
-require_once RASU_CURRENT_DIR . 'LoadLanguages.php';
-require_once RASU_CURRENT_DIR . 'Tools.php';
+require_once RASU_CURRENT_DIR . 'RASU_Azure.php';
+require_once RASU_CURRENT_DIR . 'RASU_WPAzureOptions.php';
+require_once RASU_CURRENT_DIR . 'RASU_CorrectFileName.php';
+require_once RASU_CURRENT_DIR . 'RASU_AzureFactory.php';
+require_once RASU_CURRENT_DIR . 'RASU_WPUpload.php';
+require_once RASU_CURRENT_DIR . 'RASU_WPFile.php';
+require_once RASU_CURRENT_DIR . 'RASU_File.php';
+require_once RASU_CURRENT_DIR . 'RASU_FileFactory.php';
+require_once RASU_CURRENT_DIR . 'RASU_Thumbs.php';
+require_once RASU_CURRENT_DIR . 'RASU_ThumbsFactory.php';
+require_once RASU_CURRENT_DIR . 'RASU_PostData.php';
+require_once RASU_CURRENT_DIR . 'RASU_LoadLanguages.php';
+require_once RASU_CURRENT_DIR . 'RASU_Tools.php';
 
 
 $loader = new Twig_Loader_Filesystem(RASU_VIEW);
@@ -58,39 +58,39 @@ function rasu_azure_simple_upload_plugin_options_page()
 {
 	global $twig;
 	
-	$strings['confirm'] = false;
-	$strings['confirm_container'] = false;
+	$strings['rasu_confirm'] = false;
+	$strings['rasu_confirm_container'] = false;
 
-	$post = new PostData;
+	$post = new RASU_PostData;
 	//insert post when user submit form
-	if ( $post->isValid() && $_POST['action'] == 'save' ) {
+	if ( $post->isValid() && $_POST['rasu_action'] == 'save' ) {
 		$post->insert($_POST);
-		$strings['confirm'] = true;
+		$strings['rasu_confirm'] = true;
 	}
 
 	//get itens from db
 	$data = $post->getData();
 	$strings = array_merge($strings, $data);
 
-	$azure = AzureFactory::build();
+	$azure = RASU_AzureFactory::build();
 	//create new container action
-	if ( $post->isValid() && $_POST['action'] == 'new' ) {
+	if ( $post->isValid() && $_POST['rasu_action'] == 'new' ) {
 
-		$azure->createContainer(trim($_POST['newcontainer']));
-		$strings['confirm_container'] = true;
+		$azure->createContainer(trim($_POST['rasu_twig_newcontainer']));
+		$strings['rasu_twig_rasu_confirm_container'] = true;
 	}
 
 	//get containers names
 	$containers = $azure->listContainers();
 
 	if (is_array($containers)) {
-		$strings['containers'] = $containers;
+		$strings['rasu_containers'] = $containers;
 	} else {
-		$strings['containers'] = array();
+		$strings['rasu_containers'] = array();
 	}
 
 	//merge translate with strings
-	$langs = LoadLanguages::getStrings();
+	$langs = RASU_LoadLanguages::getStrings();
 	$strings = array_merge($strings, $langs);
 
 	echo $twig->render('index.html', $strings);
@@ -100,7 +100,7 @@ function rasu_azure_simple_upload_plugin_options_page()
 
 //show media url correct
 function rasu_azure_get_attachment_url($url, $post_id) {
-	$url = Tools::changeUrl( $post_id, $url );
+	$url = RASU_Tools::changeUrl( $post_id, $url );
 	return $url;
 }
 add_filter('wp_get_attachment_url', 'rasu_azure_get_attachment_url', 9, 2 );
@@ -113,7 +113,7 @@ if ( function_exists( 'wp_calculate_image_srcset' ) ) {
 
 function rasu_azure_wp_calculate_image_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id )
 {
-	return Tools::getNewSources( $attachment_id, $sources );
+	return RASU_Tools::getNewSources( $attachment_id, $sources );
 }
 
 
@@ -136,11 +136,11 @@ function rasu_azure_simple_upload_wp_update_attachment_metadata( $data, $post_id
 	 */
 
 	//update and upload unique file (original file)
-	$file = FileFactory::build( $wpdb, $post_id, $data );
+	$file = RASU_FileFactory::build( $wpdb, $post_id, $data );
 	$data = $file->upload();
 
 	//update and upload thumbs (only images are called here)
-	$thumbs = ThumbsFactory::build( $wpdb, $post_id, $data );
+	$thumbs = RASU_ThumbsFactory::build( $wpdb, $post_id, $data );
 	$data = $thumbs->upload();
 
 	return $data;
@@ -159,7 +159,7 @@ add_filter( 'wp_handle_upload', 'rasu_azure_storage_wp_handle_upload' );
 
 function rasu_azure_storage_wp_handle_upload( $uploads ) {
 	
-	$options = new WPAzureOptions;
+	$options = new RASU_WPAzureOptions;
 	$baseUrl = $options->getCname() . '/' . $options->getContainer() . '/';
 
 	$wp_upload_dir  = wp_upload_dir();
@@ -179,3 +179,22 @@ function rasu_azure_load_plugin_textdomain() {
     load_plugin_textdomain( 'rafa-azure-simple-upload', FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
 }
 add_action( 'plugins_loaded', 'rasu_azure_load_plugin_textdomain', 0 );
+
+
+/*
+
+
+Don't try to use two letter slugs anymore. As of 2016, all the good ones are taken. Instead consider easy_cpts_ (from the first example).
+
+
+Some examples from your plugin:
+
+class File
+class FileFactory
+class LoadLanguages
+class WPFile
+define( 'CURRENT_DIR', dirname(__FILE__) . '/' );
+define( 'VIEW', CURRENT_DIR . 'view' );
+function azure_get_attachment_url
+
+*/

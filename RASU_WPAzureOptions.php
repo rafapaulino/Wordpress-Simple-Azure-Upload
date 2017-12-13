@@ -1,6 +1,6 @@
 <?php
 
-class WPAzureOptions
+class RASU_WPAzureOptions
 {
 	private $_account;
 	private $_key;
@@ -30,7 +30,7 @@ class WPAzureOptions
      */
     private function setAccount()
     {
-        $this->_account = get_option( 'azure_storage_account_name', false );
+        $this->_account = get_option( 'rasu_account', false );
 
         return $this;
     }
@@ -50,7 +50,7 @@ class WPAzureOptions
      */
     private function setKey()
     {
-        $this->_key = get_option( 'azure_storage_account_primary_access_key', false );
+        $this->_key = get_option( 'rasu_key', false );
 
         return $this;
     }
@@ -70,7 +70,7 @@ class WPAzureOptions
      */
     private function setContainer()
     {
-        $this->_container = get_option( 'default_azure_storage_account_container_name', false );
+        $this->_container = get_option( 'rasu_container', false );
 
         return $this;
     }
@@ -90,7 +90,7 @@ class WPAzureOptions
      */
     private function setCname()
     {
-        $this->_cname = get_option( 'cname', false );
+        $this->_cname = get_option( 'rasu_cname', false );
 
         return $this;
     }
