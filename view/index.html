@@ -8,12 +8,6 @@
 		<input type="hidden" name="rasu_action" value="save">
 		<h2>{{ rasu_twig_title }}</h2>
 
-		{% if rasu_account_value is empty or rasu_key_value is empty or rasu_container_value is empty or rasu_cname_value is empty %}
-			<div class="notice notice-warning">
-				<p>Adicione todas as informações para poder fazer o upload para o Azure!</a></p>
-			</div>
-		{% endif %}
-
 		{% if rasu_confirm == true %}
 			<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
 				<p><strong>{{ rasu_twig_save }}</strong></p>

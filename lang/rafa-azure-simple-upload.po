@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: LoadLanguages.php conversion\n"
+"Project-Id-Version: RASU_LoadLanguages.php conversion\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-11 14:09+0000\n"
-"PO-Revision-Date: 2017-12-11 12:10-0200\n"
+"POT-Creation-Date: 2017-12-13 18:48+0000\n"
+"PO-Revision-Date: 2017-12-13 16:53-0200\n"
 "Last-Translator: \n"
 "Language-Team: Unknown\n"
 "Language: zxx\n"
@@ -124,4 +124,8 @@ msgstr ""
 
 #: stdin:33
 msgid "New container created!"
+msgstr ""
+
+#: stdin:34
+msgid "Add all information to be able to upload to Azure!"
 msgstr ""

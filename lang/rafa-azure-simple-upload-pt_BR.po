@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: LoadLanguages.php conversion\n"
+"Project-Id-Version: RASU_LoadLanguages.php conversion\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-11 14:09+0000\n"
-"PO-Revision-Date: 2017-12-11 12:24-0200\n"
+"POT-Creation-Date: 2017-12-13 18:48+0000\n"
+"PO-Revision-Date: 2017-12-13 16:53-0200\n"
 "Last-Translator: \n"
 "Language-Team: Unknown\n"
 "Language: pt_BR\n"
@@ -29,27 +29,27 @@ msgstr "Este plugin WordPress permite que você usar o Windows Azure Storage Ser
 
 #: stdin:12
 msgid "If you do not have Windows Azure Storage Account, please register for Windows Azure Services."
-msgstr "Se você não tem uma conta Windows Azure Storage, por favor se inscreva para Serviços do Windows Azure."
+msgstr "Se você não tem o Windows Azure Storage Conta, por favor se inscreva para Serviços do Windows Azure."
 
 #: stdin:13
 msgid "Store Account Name"
-msgstr "Nome da Conta"
+msgstr "Conta"
 
 #: stdin:14
 msgid "Windows Azure Storage Account Name"
-msgstr "O Armazenamento da Conta Windows Azure"
+msgstr "O Armazenamento Do Windows Azure Nome Da Conta"
 
 #: stdin:15
 msgid "Store Account Key"
-msgstr "Chave da Conta"
+msgstr "Conta De Armazenamento Da Chave"
 
 #: stdin:16
 msgid "Windows Azure Storage Account Primary Access Key"
-msgstr "Windows Azure Storage  - Chave de Acesso da Conta"
+msgstr "Conta Do Windows Azure Storage Principal Chave De Acesso"
 
 #: stdin:17
 msgid "Default Storage Container"
-msgstr "Container Padrão de Armazenamento"
+msgstr "Padrão De Contêiner De Armazenamento"
 
 #: stdin:18
 msgid "Default container to be used for storing media files"
@@ -61,7 +61,7 @@ msgstr "CNAME"
 
 #: stdin:20
 msgid "Use CNAME instead of Windows Azure Blob URL"
-msgstr "Usar o CNAME em vez da url do Blob do Windows Azure "
+msgstr "Use CNAME em vez de Blob do Windows Azure URL"
 
 #: stdin:21
 msgid "Note: Use this option if you would like to display image URLs belonging to your domain like"
@@ -89,7 +89,7 @@ msgstr "entradas de acordo"
 
 #: stdin:27
 msgid "Save Changes"
-msgstr "Salve As Alterações"
+msgstr "Salvar as Alterações"
 
 #: stdin:28
 msgid "Saved settings."
@@ -101,16 +101,20 @@ msgstr "Fechar este aviso."
 
 #: stdin:30
 msgid "New container name:"
-msgstr "Novo nome do recipiente:"
+msgstr "Novo Container:"
 
 #: stdin:31
 msgid "Create New Container"
-msgstr "Criar Novo Recipiente"
+msgstr "Criar Novo Container"
 
 #: stdin:32
 msgid "Or create a new container by clicking here."
-msgstr "Ou criar um novo recipiente clicando aqui."
+msgstr "Ou criar um novo container clicando aqui."
 
 #: stdin:33
 msgid "New container created!"
-msgstr "Novo contentor criado!"
+msgstr "Novo container criado!"
+
+#: stdin:34
+msgid "Add all information to be able to upload to Azure!"
+msgstr "Adicione todas as informações para ser capaz de fazer o upload para o Azure!"

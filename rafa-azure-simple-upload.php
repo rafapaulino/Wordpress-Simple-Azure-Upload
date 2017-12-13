@@ -181,20 +181,21 @@ function rasu_azure_load_plugin_textdomain() {
 add_action( 'plugins_loaded', 'rasu_azure_load_plugin_textdomain', 0 );
 
 
-/*
+//alert if fields is empty
+function rasu_empty_notice() {
 
+	$azure = new RASU_WPAzureOptions;
+	$account = $azure->getAccount();
+	$key = $azure->getKey();
+	$container = $azure->getContainer();
+	$cname = $azure->getCname();
 
-Don't try to use two letter slugs anymore. As of 2016, all the good ones are taken. Instead consider easy_cpts_ (from the first example).
-
-
-Some examples from your plugin:
-
-class File
-class FileFactory
-class LoadLanguages
-class WPFile
-define( 'CURRENT_DIR', dirname(__FILE__) . '/' );
-define( 'VIEW', CURRENT_DIR . 'view' );
-function azure_get_attachment_url
-
-*/
+	if (trim($account) == "" || trim($key) == "" && trim($container) == "" || trim($cname) == ""):
+?>
+    <div class="error notice">
+        <p><?php _e( 'Add all information to be able to upload to Azure!', 'rafa-azure-simple-upload' ); ?></p>
+    </div>
+<?php
+	endif; 
+}
+add_action( 'admin_notices', 'rasu_empty_notice' );

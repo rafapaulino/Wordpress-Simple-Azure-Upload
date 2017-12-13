@@ -30,7 +30,8 @@ class RASU_LoadLanguages
 			'rasu_twig_newcontainer' => __( 'New container name:', 'rafa-azure-simple-upload' ),
 			'rasu_twig_create_newcontainer' => __( 'Create New Container', 'rafa-azure-simple-upload' ),
 			'rasu_twig_create_link' => __( 'Or create a new container by clicking here.', 'rafa-azure-simple-upload' ),
-			'rasu_twig_save_container' => __( 'New container created!', 'rafa-azure-simple-upload' )
+			'rasu_twig_save_container' => __( 'New container created!', 'rafa-azure-simple-upload' ),
+			'rasu_twig_alert' => __( 'Add all information to be able to upload to Azure!', 'rafa-azure-simple-upload' )
 		);
 	}
 }
