@@ -20,6 +20,6 @@ For more details on Windows Azure Storage, please visit the <a href="https://azu
 
 ## Installation ##
 
-1. Upload the plugin files to the `/wp-content/plugins/windows-azure-simple-upload` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/rafa-azure-simple-upload` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress.
 1. Use the Settings->Windows Azure Simple Upload to configure the plugin.
