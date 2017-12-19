@@ -153,6 +153,14 @@ add_filter(
 	2
 );
 
+add_filter('wp_handle_upload_prefilter', 'rasu_azure_custom_upload_filter' );
+
+function rasu_azure_custom_upload_filter( $file ) {
+	$obj = new RASU_CorrectFileName;
+	$file['name'] = $obj->getName($file['name']);
+	return $file;
+}
+
 
 //get correct url in wp.media 
 add_filter( 'wp_handle_upload', 'rasu_azure_storage_wp_handle_upload' );

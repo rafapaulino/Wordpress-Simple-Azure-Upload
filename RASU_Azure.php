@@ -71,7 +71,8 @@ class RASU_Azure
 
 		try {
 		
-			$fileName = $this->_CorrectNameObject->getName($name);
+			$subdir = date("Y/m/");
+			$fileName = $name; //$this->_CorrectNameObject->getName($name);
 			$name = $subdir.$fileName;
     
 		    //Upload blob
