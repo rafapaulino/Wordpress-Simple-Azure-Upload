@@ -52,6 +52,28 @@ class RASU_Tools
 			}
 		}
 
+		$url = self::verifyBaseUrl( $url );
+
 		return $url;
+	}
+
+	protected function verifyBaseUrl( $url )
+	{
+		$options = new RASU_WPAzureOptions;
+		$baseUrl = $options->getCname() . '/' . $options->getContainer() . '/';
+
+		if (strpos($url, 'wp-content') === false) {
+			return $url;
+		} else {
+
+			$path_parts = pathinfo($url);
+			$filename = $path_parts['basename'];
+			$dirname = $path_parts['dirname'];
+			$dirs = explode("/",$dirname);
+			$year = $dirs[count($dirs)-2];
+			$month = $dirs[count($dirs)-1];
+
+			return $baseUrl . $year . '/' . $month . '/' . $filename;
+		}
 	}
 }

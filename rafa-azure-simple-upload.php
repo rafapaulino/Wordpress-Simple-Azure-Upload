@@ -108,7 +108,8 @@ add_filter('wp_get_attachment_url', 'rasu_azure_get_attachment_url', 9, 2 );
 
 // Filter the 'srcset' attribute in 'the_content' introduced in WP 4.4.
 if ( function_exists( 'wp_calculate_image_srcset' ) ) {
-	add_filter( 'wp_calculate_image_srcset', 'rasu_azure_wp_calculate_image_srcset', 9, 5 );
+	//add_filter( 'wp_calculate_image_srcset', 'rasu_azure_wp_calculate_image_srcset', 9, 5 );
+	add_filter( 'wp_calculate_image_srcset_meta', '__return_empty_array' );
 }
 
 function rasu_azure_wp_calculate_image_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id )
